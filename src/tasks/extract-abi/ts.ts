@@ -1,19 +1,17 @@
 import { subtask } from "hardhat/config";
 import { Artifact } from "hardhat/types";
-import {
-  TASK_EXTRACT_ABI_TS,
-  TASK_GET_SELECTED_ARTIFACTS,
-} from "../task-names";
+import { selectedNames } from "../../constants";
 import { toConstantCase } from "../../helpers";
 import fs from "fs";
 import "./get-selected-artifacts";
 
-subtask(TASK_EXTRACT_ABI_TS).setAction(async function (args, hre) {
+subtask("extract-abi-ts").setAction(async function (args, hre) {
   const abiPath = hre.config.paths.abi;
-  const selectedNames = hre.config.contractsToExtractAbi;
 
   // get artifacts
-  const artifacts: Artifact[] = await hre.run(TASK_GET_SELECTED_ARTIFACTS);
+  const artifacts: Artifact[] = await hre.run("get-selected-artifacts", {
+    selectedNames: selectedNames,
+  });
 
   // create abi directory if it doesn't exist
   await fs.promises.mkdir(abiPath, { recursive: true });

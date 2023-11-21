@@ -11,11 +11,6 @@ declare module "hardhat/types/config" {
   // by the users. Things are normally optional here.
   export interface ProjectPathsUserConfig {
     abi?: string;
-    clientAbiFile?: string;
-  }
-
-  export interface HardhatUserConfig {
-    contractsToExtractAbi?: string[];
   }
 
   // We also extend the Config type, which represents the configuration
@@ -25,11 +20,6 @@ declare module "hardhat/types/config" {
   // default values using the extendConfig function.
   export interface ProjectPathsConfig {
     abi: string;
-    clientAbiFile: string;
-  }
-
-  export interface HardhatConfig {
-    contractsToExtractAbi: string[];
   }
 }
 

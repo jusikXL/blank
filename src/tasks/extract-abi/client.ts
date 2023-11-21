@@ -1,20 +1,18 @@
 import { subtask } from "hardhat/config";
 import { Artifact } from "hardhat/types";
-import {
-  TASK_EXTRACT_ABI_CLIENT,
-  TASK_GET_SELECTED_ARTIFACTS,
-} from "../task-names";
+import { selectedNames } from "../../constants";
 import { toConstantCase } from "../../helpers";
 import { ManuvantaraPluginError } from "../../errors";
 import fs from "fs";
 import "./get-selected-artifacts";
 
-subtask(TASK_EXTRACT_ABI_CLIENT).setAction(async function (args, hre) {
-  const clientAbiFilePath = hre.config.paths.clientAbiFile;
-  const selectedNames = hre.config.contractsToExtractAbi;
+subtask("extract-abi-client").setAction(async function (args, hre) {
+  const clientAbiFilePath = hre.config.paths.abi;
 
   // get artifacts
-  const artifacts: Artifact[] = await hre.run(TASK_GET_SELECTED_ARTIFACTS);
+  const artifacts: Artifact[] = await hre.run("get-selected-artifacts", {
+    selectedNames: selectedNames,
+  });
 
   // write abi file
   const contents = artifacts
@@ -24,9 +22,9 @@ subtask(TASK_EXTRACT_ABI_CLIENT).setAction(async function (args, hre) {
     })
     .join("\n");
 
-  if (fs.existsSync(clientAbiFilePath)) {
+  try {
     await fs.promises.writeFile(clientAbiFilePath, contents);
-  } else {
-    throw new ManuvantaraPluginError("Set the correct path to client abi file");
+  } catch {
+    throw new ManuvantaraPluginError("Path to client abi file does not exist");
   }
 });

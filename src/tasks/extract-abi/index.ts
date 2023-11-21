@@ -1,7 +1,8 @@
 import { TASK_COMPILE } from "hardhat/builtin-tasks/task-names";
 import { task } from "hardhat/config";
 import { ManuvantaraPluginError } from "../../errors";
-import { TASK_EXTRACT_ABI } from "../task-names";
+import { TASK_EXTRACT_ABI } from "../../constants";
+
 import "./json";
 import "./ts";
 import "./client";
@@ -25,6 +26,7 @@ task(TASK_EXTRACT_ABI, "Extracts ABI of the contracts")
 
     const abiPath = hre.config.paths.abi;
 
+    // TODO: switch case
     if (args.json) {
       await hre.run("extract-abi-json", { abiPath });
     }
