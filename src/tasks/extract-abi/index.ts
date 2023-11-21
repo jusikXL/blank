@@ -1,7 +1,12 @@
 import { TASK_COMPILE } from "hardhat/builtin-tasks/task-names";
 import { task } from "hardhat/config";
 import { ManuvantaraPluginError } from "../../errors";
-import { TASK_EXTRACT_ABI } from "../../constants";
+import {
+  TASK_EXTRACT_ABI,
+  TASK_EXTRACT_ABI_CLIENT,
+  TASK_EXTRACT_ABI_JSON,
+  TASK_EXTRACT_ABI_TS,
+} from "../task-names";
 
 import "./json";
 import "./ts";
@@ -28,12 +33,12 @@ task(TASK_EXTRACT_ABI, "Extracts ABI of the contracts")
 
     // TODO: switch case
     if (args.json) {
-      await hre.run("extract-abi-json", { abiPath });
+      await hre.run(TASK_EXTRACT_ABI_JSON, { abiPath });
     }
     if (args.ts) {
-      await hre.run("extract-abi-ts", { abiPath });
+      await hre.run(TASK_EXTRACT_ABI_TS, { abiPath });
     }
     if (args.client) {
-      await hre.run("extract-abi-client");
+      await hre.run(TASK_EXTRACT_ABI_CLIENT);
     }
   });

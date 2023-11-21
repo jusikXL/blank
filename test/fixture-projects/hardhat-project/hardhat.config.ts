@@ -3,8 +3,6 @@ import { HardhatUserConfig } from "hardhat/types";
 
 import "../../../src/index";
 
-const ABI_PATH_TEST = "somepath";
-
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.21",
@@ -17,8 +15,10 @@ const config: HardhatUserConfig = {
   },
   defaultNetwork: "hardhat",
   paths: {
-    abi: ABI_PATH_TEST,
+    abi: "somepath",
+    clientAbiFile: "somepath/client.ts",
   },
+  contractsToExtractAbi: ["Lock", "Lock2"],
 };
 
 export default config;
