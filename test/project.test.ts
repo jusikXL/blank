@@ -59,6 +59,12 @@ describe("Integration tests examples", function () {
         );
       }
     });
+
+    it("Should extract ABI in ts format", async function () {
+      await this.hre.run(TASK_EXTRACT_ABI, {
+        ts: true,
+      });
+    });
   });
 });
 
