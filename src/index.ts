@@ -4,11 +4,10 @@ import { HardhatConfig, HardhatUserConfig } from "hardhat/types";
 import path from "path";
 import "./tasks/extract-abi";
 
-import "./types/abi-extractor";
 // This import is needed to let the TypeScript compiler know that it should include your type
 // extensions in your npm package's types file.
 import "./types/type-extensions";
-import { ABI_PATH_DEFAULT } from "./constants";
+import { ABI_PATH_DEFAULT, CLIENT_ABI_FILE_PATH_DEFAULT } from "./constants";
 
 extendConfig(
   (config: HardhatConfig, userConfig: Readonly<HardhatUserConfig>) => {
@@ -24,22 +23,49 @@ extendConfig(
     // executing this function ensures that the `config` object is in a valid
     // state for its type, including its extensions. For example, you may
     // need to apply a default value, like in this example.
-    const userPath = userConfig.paths?.abi;
-
+    const userAbiPath = userConfig.paths?.abi;
     let abiPath: string;
-    if (userPath === undefined) {
+    if (userAbiPath === undefined) {
       abiPath = path.join(config.paths.root, ABI_PATH_DEFAULT);
     } else {
-      if (path.isAbsolute(userPath)) {
-        abiPath = userPath;
+      if (path.isAbsolute(userAbiPath)) {
+        abiPath = userAbiPath;
       } else {
         // We resolve relative paths starting from the project's root.
         // Please keep this convention to avoid confusion.
-        abiPath = path.normalize(path.join(config.paths.root, userPath));
+        abiPath = path.normalize(path.join(config.paths.root, userAbiPath));
       }
     }
-
     config.paths.abi = abiPath;
+
+    const userClientAbiFilePath = userConfig.paths?.clientAbiFile;
+    let clientAbiFilePath: string;
+    if (userClientAbiFilePath === undefined) {
+      clientAbiFilePath = path.join(
+        config.paths.root,
+        CLIENT_ABI_FILE_PATH_DEFAULT
+      );
+    } else {
+      if (path.isAbsolute(userClientAbiFilePath)) {
+        clientAbiFilePath = userClientAbiFilePath;
+      } else {
+        // We resolve relative paths starting from the project's root.
+        // Please keep this convention to avoid confusion.
+        clientAbiFilePath = path.normalize(
+          path.join(config.paths.root, userClientAbiFilePath)
+        );
+      }
+    }
+    config.paths.clientAbiFile = clientAbiFilePath;
+
+    const userContractsToExtractAbi = userConfig.contractsToExtractAbi;
+    let contractsToExtractAbi: string[];
+    if (userContractsToExtractAbi === undefined) {
+      contractsToExtractAbi = [];
+    } else {
+      contractsToExtractAbi = userContractsToExtractAbi;
+    }
+    config.contractsToExtractAbi = contractsToExtractAbi;
   }
 );
 
