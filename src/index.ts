@@ -6,7 +6,7 @@ import "./tasks/extract-abi";
 
 // This import is needed to let the TypeScript compiler know that it should include your type
 // extensions in your npm package's types file.
-import "./types/type-extensions";
+import "./type-extensions";
 import { ABI_PATH_DEFAULT, CLIENT_ABI_FILE_PATH_DEFAULT } from "./constants";
 
 extendConfig(
