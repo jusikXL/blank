@@ -1,0 +1,38 @@
+{
+  "_format": "hh-sol-cache-1",
+  "files": {
+    "/home/jusik/github/test/blank/test/fixture-projects/hardhat-project/contracts/Lock.sol": {
+      "lastModificationDate": 1700591045869,
+      "sourceName": "contracts/Lock.sol",
+      "solcConfig": {
+        "version": "0.8.21",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "Lock"
+      ]
+    }
+  }
+}
