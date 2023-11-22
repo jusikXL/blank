@@ -1,12 +1,12 @@
 # hardhat-ts-plugin-abi-extractor
 
-ABI extractor supporting json, ts (wagmi) formats
+ABI extractor supporting json and ts (wagmi) formats
 
-[Hardhat](https://github.com/manuvantara/project-royex/tree/master/contracts) plugin example.
+[Hardhat project](https://github.com/manuvantara/project-royex/tree/master/contracts) plugin example.
 
 ## What
 
-Plugin extracts ABI of the selected contracts in a desirable format (json, ts wagmi)
+This plugin seamlessly extracts the ABI of specified smart contracts into your chosen folder. It supports various formats, including JSON and TypeScript, with a special focus on TypeScript integration using [Wagmi](https://wagmi.sh/react/typescript#type-inference).
 
 ## Installation
 
@@ -17,13 +17,13 @@ npm install hardhat-ts-plugin-abi-extractor
 Import the plugin in your `hardhat.config.js`:
 
 ```js
-require("<your plugin npm package name>");
+require("hardhat-ts-plugin-abi-extractor");
 ```
 
 Or if you are using TypeScript, in your `hardhat.config.ts`:
 
 ```ts
-import "<your plugin npm package name>";
+import "hardhat-ts-plugin-abi-extractor";
 ```
 
 ## Tasks
@@ -36,11 +36,12 @@ npx hardhat help extract-abi
 
 ## Configuration
 
-This plugin extends the `HardhatUserConfig`'s `ProjectPathsUserConfig` object with an optional
-`abi` field and `clientAbiFile` field. In addition, this plugin extends `HardhatUserConfig` with `contractsToExtractAbi` field, where you can specify for which contracts you would like to extract ABI.
+Key Configuration Fields:
+`contractsToExtractAbi`: Specify the names of the contracts for which you want to extract the ABI. This field extends the `HardhatUserConfig`.
 
-`abi` is a path to the directory where abi files are supposed to be stored.
-`clientAbiFile` is a path to the file (which should exist before) that will be overridden with the packed abi files from `contractsToExtractAbi`
+`abi`: Define the directory path where the extracted ABI files will be stored ("abi" by default). This path is a part of the `ProjectPathsUserConfig` object.
+
+`clientAbiFile`: Set the path to an existing file that will be updated with the combined ABI data from the specified contracts in `contractsToExtractAbi`.
 
 This is an example of how to set it:
 
@@ -56,4 +57,4 @@ module.exports = {
 
 ## Usage
 
-There are no additional steps you need to take for this plugin to work.
+You need to take no additional steps for this plugin to work.
