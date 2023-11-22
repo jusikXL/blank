@@ -37,6 +37,7 @@ npx hardhat help extract-abi
 ## Configuration
 
 Key Configuration Fields:
+
 `contractsToExtractAbi`: Specify the names of the contracts for which you want to extract the ABI. This field extends the `HardhatUserConfig`.
 
 `abi`: Define the directory path where the extracted ABI files will be stored ("abi" by default). This path is a part of the `ProjectPathsUserConfig` object.
