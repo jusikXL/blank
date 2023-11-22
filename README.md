@@ -1,4 +1,4 @@
-# hardhat-example-plugin
+# hardhat-ts-plugin-abi-extractor
 
 ABI extractor supporting json, ts (wagmi) formats
 
@@ -6,11 +6,9 @@ ABI extractor supporting json, ts (wagmi) formats
 
 ## What
 
-Extract ABI of the selected contracts in a desirable format (json, ts wagmi)
+Plugin extracts ABI of the selected contracts in a desirable format (json, ts wagmi)
 
 ## Installation
-
-<_A step-by-step guide on how to install the plugin_>
 
 ```bash
 npm install hardhat-ts-plugin-abi-extractor
@@ -29,9 +27,6 @@ import "<your plugin npm package name>";
 ```
 
 ## Tasks
-
-<_A description of each task added by this plugin. If it just overrides internal
-tasks, this may not be needed_>
 
 This plugin adds the extract-abi task to Hardhat:
 
