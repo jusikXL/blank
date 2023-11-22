@@ -17,11 +17,12 @@ subtask(TASK_EXTRACT_ABI_JSON).setAction(async function (args, hre) {
   await fs.promises.mkdir(abiPath, { recursive: true });
 
   // write abi files
-  const writePromises = artifacts.map(({ abi }, index) =>
-    fs.promises.writeFile(
+  const writePromises = artifacts.map(({ abi }, index) =>{
+    return fs.promises.writeFile(
       `${abiPath}/${selectedNames[index]}.json`,
       JSON.stringify(abi)
     )
+  }
   );
 
   await Promise.all(writePromises);

@@ -26,7 +26,7 @@ subtask(TASK_EXTRACT_ABI_TS).setAction(async function (args, hre) {
       selectedName
     )}_ABI = ${JSON.stringify(abi)} as const;\n`;
 
-    fs.promises.writeFile(`${abiPath}/${selectedName}.ts`, content);
+    return fs.promises.writeFile(`${abiPath}/${selectedName}.ts`, content);
   });
 
   await Promise.all(writePromises);
